@@ -1,0 +1,54 @@
+.item {
+  display: flex;
+}
+.subItem {
+  display: flex;
+  margin: 15px 0;
+  margin-left: 50px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  img {
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+  }
+}
+.body {
+  flex: 1;
+  padding-left: 15px;
+  &User {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+  }
+  &UserText {
+    font-weight: 600;
+    margin: 0;
+  }
+  &Text {
+    margin: 0;
+  }
+  &Date {
+    margin: 0;
+    font-style: italic;
+    color: #777777;
+  }
+}
+.replyButton {
+  cursor: pointer;
+  padding: 3px 10px 15px 0;
+  color: #0044dd;
+  transition: color .2s ease-in-out;
+  display: inline-block;
+  &:hover {
+    color: lighten(#0044dd, 20%);
+  }
+  &:active {
+    color: darken(#0044dd, 20%);
+  }
+}
+.answers {
+
+}
