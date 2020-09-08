@@ -4,9 +4,10 @@ import { PostsActionTypes } from '../../interfaces/types';
 
 const initialState = {
   loading: false,
-  post: {} as object,
+  // post: {} as object,
   posts: [] as Array<IPostResponse>,
   error: null as Error | null,
+  comments: [] as any
 };
 type InitialStateType = typeof initialState;
 
@@ -60,17 +61,43 @@ export default function postReducer(state: InitialStateType = initialState, acti
         ...state, loading: true
       };
     case FETCH.REPLIES.SUCCESS:
-      const { postId, id, replies } = action.payload;
+      const { id, postId, replies } = action.payload;
 
       const postIndex = state.posts.findIndex((item: any) => item.id === postId);
-      const commentIndex = state.posts[postIndex].comments.findIndex((item: any) => item.id === id);
+      const comments: any = state.posts[postIndex].comments;
+
+      const findParentCommentIndex = (comments: any): any => {
+        comments.forEach((comment: any) => {
+          if (comment?.replies) {
+            comment.replies.map((item: any) => {
+              if (item.id === id) {
+
+                return item.replies = replies;
+              }
+            });
+          }
+         });
+      };
       const newPosts = state.posts;
-      newPosts[postIndex].comments[commentIndex].replies = replies;
+      const commentIndex = comments.findIndex((item: any) => item.id === id);
+      if (commentIndex === -1) {
+        const idx = findParentCommentIndex(comments);
+        newPosts[postIndex].comments[idx].replies = replies;
+      } else {
+        newPosts[postIndex].comments[commentIndex].replies = replies;
+      }
+
+
+      // if (commentIndex) {
+      //   comments.push(state.posts[postIndex].comments[commentIndex]);
+      // }
+      console.log('newPosts = ', newPosts);
 
       return {
         ...state,
         loading: false,
         posts: newPosts,
+        comments,
       };
     case FETCH.REPLIES.FAIL:
       return {

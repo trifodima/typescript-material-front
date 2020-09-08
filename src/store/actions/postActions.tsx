@@ -41,7 +41,7 @@ export type FetchRepliesStart = {
     postId: number | null,
   }
 }
-export function fetchRepliesStart(payload: { id: number | null; postId: number | null }): FetchRepliesStart {
+export function fetchRepliesStart(payload: { id: number | null; postId: number | null}): FetchRepliesStart {
   return {
     type: FETCH.REPLIES.START,
     payload,

@@ -11,7 +11,6 @@ type Props = {
 }
 const CommentItem: FunctionComponent<Props> = (props) => {
   const { item: { id, user, body, created_at, post_id, is_ref, replies }, subItem, replyHandler, viewAllAnswers } = props;
-  console.log('replies = ', replies);
 
   const dateFormat = () => {
     const date = new Date(created_at);

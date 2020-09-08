@@ -68,7 +68,7 @@ function* fetchPostComments({ payload: { id, postId }} : FetchRepliesStart) {
     });
     const replies: any = response.data.results;
 
-    yield put(fetchRepliesSuccess({postId, id, replies}));
+    yield put(fetchRepliesSuccess({id, postId, replies}));
   } catch (error) {
     yield put(fetchRepliesFail(error));
   }

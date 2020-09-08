@@ -13,8 +13,6 @@ import Loader from './components/Loader';
 const AddPost = lazy(() => import('./containers/AddPost/AddPost'));
 const Home = lazy(() => import('./containers/Home/Home'));
 
-
-
 function App() {
   return (
     <Provider store={store}>
